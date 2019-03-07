@@ -23,9 +23,9 @@ class Form extends Component {
 
   handleSubmit() {
     const { input } = this.state;
-    const { addRobot } = this.props;
+    const { submit } = this.props;
 
-    addRobot(input)
+    submit(input)
 
     this.setState( { input: '' } )
   }
@@ -37,12 +37,12 @@ class Form extends Component {
   }
   
   buttonText() {
-    const { loading } = this.props;
+    const { loading, text } = this.props;
 
     if (loading) {
       return "Loading..."
     } else {
-      return "Build my Bot!"
+      return text
     }
   }
 
@@ -50,7 +50,7 @@ class Form extends Component {
     const { input } = this.state;
 
     return(
-      <div className="parent" onKeyPress={this.handleKeyPress}>
+      <div className="inner-container" onKeyPress={this.handleKeyPress}>
 
         <div className="inner-container">
           <div className="button">

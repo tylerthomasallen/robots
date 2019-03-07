@@ -34,11 +34,9 @@ button:focus {
 
 h1 { 
   font-size: 36px;
+  margin: 10px;
 }
 
-html {
-  background: linear-gradient(45deg, red, blue);
-}
 
 .parent, #root, html, body {
   display: flex;

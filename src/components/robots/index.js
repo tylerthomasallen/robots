@@ -62,18 +62,17 @@ class Robots extends Component {
     return(
     <div className="parent">
       
-      <div className="inner-container">
-        <h1>Create your Robot Army!</h1>
-      </div>
-
-      <Form loading={loading} addRobot={this.addRobot} />
+      <h1>Create your Robot Army!</h1>
+      <p>Enter in a name and see your robot come to life!</p>
+      
+      <Form loading={loading} submit={this.addRobot} text="Build my bot!"/>
       
       <div className="inner-container">
         {robots.map((name, idx ) => {
           return <Robot name={name} handleLoading={this.handleLoading} deleteRobot={this.deleteRobot} key={`${name}-${idx}`}/>
         })}
       </div>
-
+      
     </div>
     )
   }
