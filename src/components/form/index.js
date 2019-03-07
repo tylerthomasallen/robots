@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getRobot } from '../../api';
-import '../../styles/form.scss';
+import debounce from 'lodash/debounce'
 import Robot from '../robot';
 
 class Form extends Component {
@@ -14,7 +14,10 @@ class Form extends Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
+    
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = debounce(this.handleSubmit, 1000);
+
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.buttonText = this.buttonText.bind(this);
     this.renderRobots = this.renderRobots.bind(this);
@@ -55,13 +58,10 @@ class Form extends Component {
 
   renderRobots() {
     const { robots: { array }, loading } = this.state;
-
-    // add name to be loading icon
     return(
     <div className="inner-container">
       {array.map( ({ imgUrl, input } ) => {
-        const name = loading ? '' : input;
-        return <Robot imgUrl={imgUrl} name={name} handleLoading={this.handleLoading} key={`${input}`}/>
+        return <Robot imgUrl={imgUrl} name={input} loading={loading} handleLoading={this.handleLoading} key={`${input}`}/>
       })}
     </div>
     )

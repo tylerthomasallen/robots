@@ -1,5 +1,17 @@
 @import './constants.scss';
 
+.video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translate(-50%, -50%);
+}
+
 .inner-container {
   display: flex;
   justify-content: space-evenly;
