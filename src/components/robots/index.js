@@ -18,7 +18,6 @@ class Robots extends Component {
 
   componentDidMount() {
     let robots = localStorage.getItem('robots');
-    debugger;
 
     if (robots !== null) {
       robots = JSON.parse(robots);
