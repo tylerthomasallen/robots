@@ -1,10 +1,10 @@
 import React from 'react';
-import Form from './form';
+import Robots from './robots';
 
 const App = () => {
   return(
     <div className="parent">
-      <Form />
+      <Robots />
     </div>
   );
 }

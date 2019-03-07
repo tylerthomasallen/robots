@@ -25,6 +25,13 @@ time, mark, audio, video {
 
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
 h1 { 
   font-size: 36px;
 }
