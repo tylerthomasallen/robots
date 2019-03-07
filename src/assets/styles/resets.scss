@@ -21,11 +21,8 @@ time, mark, audio, video {
  font-size:100%;
  vertical-align:baseline;
  background:transparent;
+ line-height: none;
 
-}
-
-h1, p {
-  margin: 10px;
 }
 
 h1 { 
@@ -35,8 +32,6 @@ h1 {
 html {
   background: linear-gradient(45deg, red, blue);
 }
-
-$primary-font: "SentinelSSm-Medium";
 
 .parent, #root, html, body {
   display: flex;

@@ -1,17 +1,5 @@
 @import './constants.scss';
 
-.video {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -100;
-  transform: translate(-50%, -50%);
-}
-
 .inner-container {
   display: flex;
   justify-content: space-evenly;
@@ -21,29 +9,24 @@
   height: 100%;
 }
 
-.input-container {
-  padding: 20px;
-  margin: 10px;
-  background-color: $primary-color;
-  border-radius: 3px;
-
-  input {
-    font-size: 24px;
-    border: none;
-    padding: 10px;
-    color: black;
-  }
-}
-
 .button {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90px;
-  width: 300px;
+  height: $button-height;
+  width: $button-width;
   border-radius: 3px;
   background-color: $primary-color;
   margin: 10px;
   cursor: pointer;
   color: white;
+
+  input {
+    font-size: 20px;
+    border: none;
+    border-radius: 3px;
+    padding: 10px;
+    color: black;
+    font-family: $primary-font;
+  }
 }

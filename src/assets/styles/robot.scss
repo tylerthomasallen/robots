@@ -8,5 +8,15 @@
   justify-content: center;
   border-radius: 6px;
   box-shadow: 0px 0px 10px 10px lightcoral;
+
+  i {
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
+    color: red;
+    margin-top: 10px;
+    font-size: 28px;
+    cursor: pointer;
+  }
 }
 

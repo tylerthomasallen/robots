@@ -10,19 +10,21 @@ class Form extends Component {
     this.state = {
       input: '',
       loading: false,
-      robots: { array: [] }
+      robots: []
     }
 
     this.handleChange = this.handleChange.bind(this);
     
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSubmit = debounce(this.handleSubmit, 1000);
+    this.handleSubmit = debounce(this.handleSubmit, 500);
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.buttonText = this.buttonText.bind(this);
     this.renderRobots = this.renderRobots.bind(this);
     
     this.handleLoading = this.handleLoading.bind(this);
+
+    this.deleteRobot = this.deleteRobot.bind(this);
   }
 
   handleChange( { currentTarget: { value } } ) {
@@ -32,18 +34,18 @@ class Form extends Component {
   async handleSubmit() {
     const { input, robots } = this.state;
 
-    if (robots[input] === undefined) {
+    if (!robots.includes(input)) {
       await this.setState( { loading: true } )
       
-      const imgUrl = await getRobot(input);
-      robots[input] = imgUrl;
-      robots.array.push({imgUrl, input})
+      robots.push(input)
       await this.setState( { robots });
       
       await this.setState( { input: ''} );
+    
     } else {
       alert("You've already made that robot!")
     }
+
   }
 
   handleKeyPress({ key }) {
@@ -57,23 +59,34 @@ class Form extends Component {
   }
 
   renderRobots() {
-    const { robots: { array }, loading } = this.state;
+    const { robots } = this.state;
     return(
     <div className="inner-container">
-      {array.map( ({ imgUrl, input } ) => {
-        return <Robot imgUrl={imgUrl} name={input} loading={loading} handleLoading={this.handleLoading} key={`${input}`}/>
+      {robots.map((name, idx ) => {
+        return <Robot name={name} handleLoading={this.handleLoading} deleteRobot={this.deleteRobot} key={`${name}-${idx}`}/>
       })}
     </div>
     )
+  }
+
+  deleteRobot(name) {
+    const { robots } = this.state;
+    const idx = robots.indexOf(name);
+    if (idx !== -1) {
+      robots.splice(idx, 1)
+    }
+
+    this.setState( { robots } )
+
   }
   
   buttonText() {
     const { loading } = this.state;
 
     if (loading) {
-      return "Loading"
+      return "Loading..."
     } else {
-      return "Find my Robot!"
+      return "Build my Bot!"
     }
   }
 
@@ -88,7 +101,7 @@ class Form extends Component {
       </div>
 
         <div className="inner-container">
-          <div className="input-container">
+          <div className="button">
             <input type="text" value={input} onChange={this.handleChange} />
           </div>
           <span className="button" onClick={this.handleSubmit}>{this.buttonText()}</span>
