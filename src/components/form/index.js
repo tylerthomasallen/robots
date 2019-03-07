@@ -54,7 +54,7 @@ class Form extends Component {
 
         <div className="inner-container">
           <div className="button">
-            <input type="text" value={input} onChange={this.handleChange} />
+            <input type="text" placeholder="Name" value={input} onChange={this.handleChange} />
           </div>
           <span className="button" onClick={this.handleSubmit}>{this.buttonText()}</span>
         </div>
