@@ -1,3 +1,5 @@
+@import './constants.scss';
+
 // CSS Resets
 
 html, body, div, span, object, iframe,
@@ -19,11 +21,24 @@ time, mark, audio, video {
  font-size:100%;
  vertical-align:baseline;
  background:transparent;
+
+}
+
+h1, p {
+  margin: 10px;
+}
+
+h1 { 
+  font-size: 36px;
+}
+
+html {
+  background: linear-gradient(45deg, red, blue);
 }
 
 $primary-font: "SentinelSSm-Medium";
 
-.parent {
+.parent, #root, html, body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,4 +47,5 @@ $primary-font: "SentinelSSm-Medium";
   height: 100%;
   font-family: $primary-font;
   font-size: 24px;
+  color: black;
 }
