@@ -6,23 +6,16 @@ class Robots extends Component {
   constructor(props) {
     super(props)
 
+    const robots = JSON.parse(localStorage.getItem('robots') || []);
+
     this.state = {
-      robots: [],
+      robots,
       loading: false
     }
 
     this.addRobot = this.addRobot.bind(this);
     this.deleteRobot = this.deleteRobot.bind(this);
     this.handleLoading = this.handleLoading.bind(this);
-  }
-
-  componentDidMount() {
-    let robots = localStorage.getItem('robots');
-
-    if (robots !== null) {
-      robots = JSON.parse(robots);
-      this.setState( { robots } )
-    }
   }
 
   addRobot(input) {
@@ -41,14 +34,16 @@ class Robots extends Component {
   }
 
   deleteRobot(name) {
-    const { robots } = this.state;
-    const idx = robots.indexOf(name);
-    if (idx !== -1) {
-      robots.splice(idx, 1)
-    }
+    return () => {
+      const { robots } = this.state;
+      const idx = robots.indexOf(name);
+      if (idx !== -1) {
+        robots.splice(idx, 1)
+      }
 
-    this.setState( { robots } )
-    localStorage.setItem('robots', JSON.stringify(robots))
+      this.setState( { robots } )
+      localStorage.setItem('robots', JSON.stringify(robots))
+    }
   }
 
   async handleLoading() {
@@ -68,7 +63,14 @@ class Robots extends Component {
       
       <div className="inner-container">
         {robots.map((name, idx ) => {
-          return <Robot name={name} handleLoading={this.handleLoading} deleteRobot={this.deleteRobot} key={`${name}-${idx}`}/>
+          return (
+            <Robot 
+              name={name} 
+              handleLoading={this.handleLoading} 
+              deleteRobot={this.deleteRobot(name)} 
+              key={`${name}-${idx}`}
+            />
+          )
         })}
       </div>
       

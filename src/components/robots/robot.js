@@ -9,7 +9,6 @@ class Robot extends Component {
     }
 
     this.handleLoading = this.handleLoading.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
   }
 
   async handleLoading() {
@@ -17,18 +16,14 @@ class Robot extends Component {
     this.props.handleLoading();
   }
 
-  handleDelete() {
-    const { name, deleteRobot } = this.props;
-    deleteRobot(name)
-  }
 
   render() {
-    const { name } = this.props;
+    const { name, deleteRobot } = this.props;
     const { loadingClass } = this.state;
 
     return(
       <div className={`robot ${loadingClass}`}>
-        <i className="fas fa-trash" onClick={this.handleDelete}></i>
+        <i className="fas fa-trash" onClick={deleteRobot}></i>
         <img src={`https://robohash.org/${name}.png`} onLoad={this.handleLoading}/>
         <h1>{name}</h1>
       </div>
