@@ -6,7 +6,7 @@ class Robots extends Component {
   constructor(props) {
     super(props)
 
-    const robots = JSON.parse(localStorage.getItem('robots') || []);
+    const robots = JSON.parse(localStorage.getItem('robots') || '[]');
 
     this.state = {
       robots,
