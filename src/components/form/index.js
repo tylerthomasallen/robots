@@ -20,13 +20,15 @@ class Form extends Component {
     this.setState( { input: value } )
   }
 
-  handleSubmit() {
+  async handleSubmit() {
     const { input } = this.state;
     const { submit } = this.props;
 
-    submit(input)
+    if (input.length > 0) {
+      submit(input)
+      await this.setState( { input: '' } )
+    }
 
-    this.setState( { input: '' } )
   }
 
   handleKeyPress({ key }) {

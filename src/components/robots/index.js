@@ -42,7 +42,10 @@ class Robots extends Component {
       
       if (idx !== -1) {
         
-        const newRobots = robots.slice(0, idx).concat(robots.slice(idx + 1))
+        const newRobots = [
+          ...robots.slice(0, idx),
+          ...robots.slice(idx + 1)
+        ]
 
         this.setState( { robots: newRobots } )
         localStorage.setItem('robots', JSON.stringify(newRobots))
