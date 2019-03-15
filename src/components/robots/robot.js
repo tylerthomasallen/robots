@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Robot extends Component {
   constructor(props) {
@@ -16,7 +17,6 @@ class Robot extends Component {
     this.props.handleLoading();
   }
 
-
   render() {
     const { name, deleteRobot } = this.props;
     const { loadingClass } = this.state;
@@ -24,11 +24,17 @@ class Robot extends Component {
     return(
       <div className={`robot ${loadingClass}`}>
         <i className="fas fa-trash" onClick={deleteRobot}></i>
-        <img src={`https://robohash.org/${name}.png`} onLoad={this.handleLoading}/>
+        <img src={`https://robohash.org/${name}.png`} alt={`robot-${name}`} onLoad={this.handleLoading}/>
         <h1>{name}</h1>
       </div>
     )
   }
+}
+
+Robot.propTypes = {
+  name: PropTypes.string,
+  deleteRobot: PropTypes.func,
+  handleLoading: PropTypes.func
 }
 
 

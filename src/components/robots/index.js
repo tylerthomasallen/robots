@@ -23,9 +23,11 @@ class Robots extends Component {
 
     if (!robots.includes(input)) {
       this.setState( { loading: true } )
-      robots.push(input);
-      this.setState( { robots } )
-      localStorage.setItem('robots', JSON.stringify(robots))
+
+      const newRobots = [ ...robots, input ];
+
+      this.setState( { robots: newRobots } )
+      localStorage.setItem('robots', JSON.stringify(newRobots))
 
     } else {
       alert(`${input} has already been added to your Army!`)
@@ -37,12 +39,14 @@ class Robots extends Component {
     return () => {
       const { robots } = this.state;
       const idx = robots.indexOf(name);
+      
       if (idx !== -1) {
-        robots.splice(idx, 1)
-      }
+        
+        const newRobots = robots.slice(0, idx).concat(robots.slice(idx + 1))
 
-      this.setState( { robots } )
-      localStorage.setItem('robots', JSON.stringify(robots))
+        this.setState( { robots: newRobots } )
+        localStorage.setItem('robots', JSON.stringify(newRobots))
+      }
     }
   }
 

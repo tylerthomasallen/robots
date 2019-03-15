@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { debounce } from 'lodash'
+import PropTypes from 'prop-types';
 
 class Form extends Component {
   constructor(props) {
@@ -11,14 +11,13 @@ class Form extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSubmit = debounce(this.handleSubmit, 1000);
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.buttonText = this.buttonText.bind(this);
   }
 
   handleChange( { currentTarget: { value } } ) {
-    this.setState({input: value})
+    this.setState( { input: value } )
   }
 
   handleSubmit() {
@@ -61,6 +60,12 @@ class Form extends Component {
       </div>
     )
   }
+}
+
+Form.propTypes = {
+  loading: PropTypes.bool,
+  test: PropTypes.string,
+  submit: PropTypes.func
 }
 
 export default Form;
